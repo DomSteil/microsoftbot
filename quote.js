@@ -11,7 +11,6 @@ var bladeServers = {
         Product Code: BL660c,
         List Price: '3,500'
     }
-
 };
 
 
