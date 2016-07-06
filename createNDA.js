@@ -17,11 +17,11 @@ bot.add('/', [
     },
     function (session, results) {
         session.userData.startDate = results.response;
-        builder.Prompts.number(session, "What is the start date?");
+        builder.Prompts.time(session, "What is the start date?");
     },
     function (session, results) {
         session.userData.closeDate = results.response;
-        builder.Prompts.number(session, "What is the close date?");
+        builder.Prompts.time(session, "What is the close date?");
     },
     function (session, results) {
         session.userData.nda = results.response.entity;
