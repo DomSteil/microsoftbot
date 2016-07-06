@@ -1,6 +1,20 @@
 var restify = require('restify');
 var builder = require('botbuilder');
 
+
+var bladeServers = {
+    "WS460c Gen8 Graphics Server Blade": {
+        Product Code: WL460c,
+        List Price:'$2,450'
+    },
+    "BL660c Gen8 Server Blade": {
+        Product Code: BL660c,
+        List Price: '3,500'
+    }
+
+};
+
+
 // Create bot and add dialogs
 var bot = new builder.BotConnectorBot({ appId: 'YourAppId', appSecret: 'YourAppSecret' });
 bot.add('/', [
@@ -13,7 +27,7 @@ bot.add('/', [
     },
     function (session, results) {
         session.userData.product = results.response;
-        builder.Prompts.choice(session, "Which product do you want to add?", ["WS460c Gen8 Graphics Server Blade", "BL660c Gen8 Server Blade", "TypeScript"]);
+        builder.Prompts.choice(session, "Which product do you want to add?", bladeServers);
     },
     function (session, results) {
         session.userData.quantity = results.response;
