@@ -5,11 +5,11 @@ var builder = require('botbuilder');
 var bladeServers = {
     "WS460c Gen8 Graphics Server Blade": {
         ProductCode: WL460c,
-        List Price:'$2,450'
+        ListPrice:'$2,450'
     },
     "BL660c Gen8 Server Blade": {
         ProductCode: BL660c,
-        List Price: '3,500'
+        ListPrice: '3,500'
     }
 };
 
