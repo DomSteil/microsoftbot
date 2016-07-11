@@ -38,7 +38,7 @@ bot.dialog('/', [
         builder.Prompts.time(session, "What is the close date?");
     },
     function (session, results) {
-        session.dialogData.nda = results.response.entity;
+        session.dialogData.msa = results.response.entity;
         session.send("Got it... I have created your MSA! ");
     }
 ]);
