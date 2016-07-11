@@ -12,7 +12,7 @@ var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
 bot.dialog('/', dialog);
 
 // Add intent handlers
-// First Luis Example is Create Contact
+// First Luis Example is Create Contact, the rest are being routed
 dialog.matches('builtin.intent.createContact', [
 	function (session, args, next) {
 		var firstName = builder.EntityRecognizer.findEntity(args.entities, 'builtin.createContact.firstName');
