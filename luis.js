@@ -2,6 +2,9 @@ var restify = require('restify');
 var builder = require('botbuilder');
 var converse = require('converse');
 
+
+var bot = new builder.BotConnectorBot({ appId: 'YourAppId', appSecret: 'YourAppSecret' });
+
 var model = process.env.model || 'https://api.projectoxford.ai/luis/v1/application?id=6bce4284-450b-47f7-acdc-003c95c92f4f&subscription-key=9ceaa7a6ab9d4f11851bd28c80521d71'
 var recognizer = new builder.LuisDialog(model);
 var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
@@ -53,8 +56,27 @@ dialog.matches('builtin.intent.createContact', [
 ]);
 
 
-var bot = new builder.BotConnectorBot({ appId: 'YourAppId', appSecret: 'YourAppSecret' });
-bot.add('/', dialog);
+bot.dialog('/help', [
+    function (session) {
+        builder.Prompts.choice(session, "Hello I am the Aptbot! What you like to do?", "Create Account|Create Oppotunity|Create Contact|Create Quote|Create Agreement|");
+    },
+    function (session, results) {
+        if (results.response && results.response.entity != '(quit)') {
+            // Launch demo dialog
+            session.beginDialog('/' + results.response.entity);
+        } else {
+            // Exit the menu
+            session.endDialog();
+        }
+    },
+    function (session, results) {
+        // The menu runs a loop until the user chooses to (quit).
+        session.replaceDialog('/help');
+    }
+]);
+
+
+
 
 bot.add('/', new builder.LuisDialog('https://api.projectoxford.ai/luis/v1/application?id=6bce4284-450b-47f7-acdc-003c95c92f4f&subscription-key=9ceaa7a6ab9d4f11851bd28c80521d71')
     .on('CreateNDA', '/createNDA')
