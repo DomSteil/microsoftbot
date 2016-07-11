@@ -2,7 +2,7 @@ var restify = require('restify');
 var builder = require('botbuilder');
 
 // Create bot and add dialogs
-var bot = new builder.BotConnectorBot({ appId: 'YourAppId', appSecret: 'YourAppSecret' });
+var bot = new builder.UniversalBot({ appId: 'YourAppId', appSecret: 'YourAppSecret' });
 
 
 //Future State for a Catalog Card 
