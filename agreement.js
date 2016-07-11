@@ -22,23 +22,23 @@ bot.dialog('/', [
         builder.Prompts.text(session, "Hello... my name is Aptbot. What's you name?");
     },
     function (session, results) {
-        session.userData.agreementName = results.response;
+        session.dialogData.agreementName = results.response;
         builder.Prompts.text(session, "Hi " + results.response + ", What is the agreement's Name?"); 
     },
     function (session, results) {
-        session.userData.product = results.response;
+        session.dialogData.product = results.response;
         builder.Prompts.choice(session, "What type of Agreement?", ["NDA", "MSA", "SOW"]);
     },
     function (session, results) {
-        session.userData.startDate = results.response;
+        session.dialogData.startDate = results.response;
         builder.Prompts.time(session, "What is the Start Date?");
     },
     function (session, results) {
-        session.userData.endDate = results.response;
+        session.dialogData.endDate = results.response;
         builder.Prompts.time(session, "What is the End Date?");
     },
     function (session, results) {
-        session.userData.nameAgain = results.response.entity;
+        session.dialogData.nameAgain = results.response.entity;
         session.send("Got it... I have created your Agreement! ");
     }
 ]);
