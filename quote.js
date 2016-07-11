@@ -16,7 +16,7 @@ var bladeServers = {
 
 // Create bot and add dialogs
 var bot = new builder.BotConnectorBot({ appId: 'YourAppId', appSecret: 'YourAppSecret' });
-bot.add('/', [
+bot.dialog('/', [
     function (session) {
         builder.Prompts.text(session, "Hello... my name is Aptbot. What's you name?");
     },

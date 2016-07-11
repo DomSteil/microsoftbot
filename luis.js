@@ -1,5 +1,6 @@
 var restify = require('restify');
 var builder = require('botbuilder');
+var caller = require('botbuilder-calling');
 var converse = require('converse');
 
 
@@ -74,8 +75,6 @@ bot.dialog('/help', [
         session.replaceDialog('/help');
     }
 ]);
-
-
 
 
 bot.add('/', new builder.LuisDialog('https://api.projectoxford.ai/luis/v1/application?id=6bce4284-450b-47f7-acdc-003c95c92f4f&subscription-key=9ceaa7a6ab9d4f11851bd28c80521d71')
