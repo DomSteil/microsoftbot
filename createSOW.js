@@ -16,23 +16,23 @@ bot.dialog('/', [
         builder.Prompts.text(session, "Hello... my name is Aptbot. What's you name?");
     },
     function (session, results) {
-        session.userData.accountName = results.response;
+        session.dialogData.accountName = results.response;
         builder.Prompts.text(session, "Hi " + results.response + ", Which Account?"); 
     },
     function (session, results) {
-        session.userData.primaryContact = results.response;
+        session.dialogData.primaryContact = results.response;
         builder.Prompts.text(session, "Who is the Primary Contact?");
     },
     function (session, results) {
-        session.userData.startDate = results.response;
+        session.dialogData.startDate = results.response;
         builder.Prompts.time(session, "What is the start date?");
     },
     function (session, results) {
-        session.userData.closeDate = results.response;
+        session.dialogData.closeDate = results.response;
         builder.Prompts.time(session, "What is the close date?");
     },
     function (session, results) {
-        session.userData.nda = results.response.entity;
+        session.dialogData.nda = results.response.entity;
         session.send("Got it... I have created your SOW! ");
     }
 ]);

@@ -23,23 +23,23 @@ bot.dialog('/', [
         builder.Prompts.text(session, "Hello... my name is Aptbot. What's you name?");
     },
     function (session, results) {
-        session.userData.accountName = results.response;
+        session.dialogData.accountName = results.response;
         builder.Prompts.text(session, "Hi " + results.response + ", What is the Account's Name?"); 
     },
     function (session, results) {
-        session.userData.type = results.response;
+        session.dialogData.type = results.response;
         builder.Prompts.text(session, "What is the Relationship Type?");
     },
     function (session, results) {
-        session.userData.revenue = results.response;
+        session.dialogData.revenue = results.response;
         builder.Prompts.number(session, "What is the Annual Revenue?");
     },
     function (session, results) {
-        session.userData.employees = results.response;
+        session.dialogData.employees = results.response;
         builder.Prompts.number(session, "How many employees?");
     },
     function (session, results) {
-        session.userData.type = results.response.entity;
+        session.dialogData.type = results.response.entity;
         session.send("Got it... I have created your Account! ");
     }
 ]);

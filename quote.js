@@ -17,27 +17,27 @@ bot.dialog('/', [
         builder.Prompts.text(session, "Hello... my name is Aptbot. What's you name?");
     },
     function (session, results) {
-        session.userData.quoteNumber = results.response;
+        session.dialogData.quoteNumber = results.response;
         builder.Prompts.number(session, "Hi " + results.response + ", Which quote would you like to configure?"); 
     },
     function (session, results) {
-        session.userData.product = results.response;
+        session.dialogData.product = results.response;
         builder.Prompts.choice(session, "Which product do you want to add?", bladeServers);
     },
     function (session, results) {
-        session.userData.quantity = results.response;
+        session.dialogData.quantity = results.response;
         builder.Prompts.number(session, "How many Blade Servers?");
     },
     function (session, results) {
-    	session.userData.discount = results.response;
+    	session.dialogData.discount = results.response;
     	builder.Prompts.number(session, "What discount?");
     },
     function (session, results) {
-    	session.userData.confirmation = results.response;
+    	session.dialogData.confirmation = results.response;
     	builder.Prompts.choice(session, "Do you want to finalize the Cart", ["Finalize", "Add More Products"]);
     },
     function (session, results) {
-    	session.userData.nameAgain = results.response.entity;
+    	session.dialogData.nameAgain = results.response.entity;
     	session.send("Got it... I have configured your quote! ");
     }
 ]);

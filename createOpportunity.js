@@ -16,27 +16,27 @@ bot.dialog('/', [
         builder.Prompts.text(session, "Hello... my name is Aptbot. What's you name?");
     },
     function (session, results) {
-        session.userData.opportunityName = results.response;
+        session.dialogData.opportunityName = results.response;
         builder.Prompts.text(session, "Hi " + results.response + ", What is the Opportunity's Name?"); 
     },
     function (session, results) {
-        session.userData.account = results.response;
+        session.dialogData.account = results.response;
         builder.Prompts.text(session, "Which account is it associated to?");
     },
     function (session, results) {
-        session.userData.revenue = results.response;
+        session.dialogData.revenue = results.response;
         builder.Prompts.text(session, "What is the Pricelist?");
     },
     function (session, results) {
-        session.userData.currency = results.response;
+        session.dialogData.currency = results.response;
         builder.Prompts.number(session, "What is the Currency?");
     },
     function (session, results) {
-        session.userData.closeDate = results.response;
+        session.dialogData.closeDate = results.response;
         builder.Prompts.date(session, "What is the Close Date");
     },
     function (session, results) {
-        session.userData.type = results.response.entity;
+        session.dialogData.type = results.response.entity;
         session.send("Got it... I have created your Opportunity! ");
     }
 ]);
