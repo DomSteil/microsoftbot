@@ -1,9 +1,23 @@
 var restify = require('restify');
 var builder = require('botbuilder');
 
-// Create bot and add dialogs
-var bot = new builder.UniversalBot({ appId: 'YourAppId', appSecret: 'YourAppSecret' });
-bot.add('/', [
+
+// Setup Restify Server
+var server = restify.createServer();
+server.post('/api/messages', bot.verifyBotFramework(), bot.listen());
+server.listen(process.env.port || 3978, function () {
+    console.log('%s listening to %s', server.name, server.url); 
+});
+
+// Create chat bot
+var connector = new builder.ChatConnector({
+    appId: process.env.MICROSOFT_APP_ID,
+    appPassword: process.env.MICROSOFT_APP_PASSWORD
+});
+var bot = new builder.UniversalBot(connector);
+server.post('/api/messages', connector.listen());
+
+bot.dialog('/', [
     function (session) {
         builder.Prompts.text(session, "Hello... my name is Aptbot. What's you name?");
     },
@@ -30,6 +44,15 @@ bot.add('/', [
 ]);
 
 
+
+
+
+
+
+
+// DEPRECATED - v1.0
+
+/*
 var helloBot = new builder.TextBot();
 helloBot.add('/', function (session) {
     if (!session.userData.name) {
@@ -51,14 +74,7 @@ helloBot.add('/profile', [
 helloBot.listenStdin();
 
 
-// Setup Restify Server
-var server = restify.createServer();
-server.post('/api/messages', bot.verifyBotFramework(), bot.listen());
-server.listen(process.env.port || 3978, function () {
-    console.log('%s listening to %s', server.name, server.url); 
-});
-
-
+*/
 
 
 
