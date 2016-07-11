@@ -1,9 +1,20 @@
 var restify = require('restify');
 var builder = require('botbuilder');
 
-// Create bot and add dialogs
-var bot = new builder.UniversalBot({ appId: 'YourAppId', appSecret: 'YourAppSecret' });
+// Setup Restify Server
+var server = restify.createServer();
+server.listen(process.env.port || 3978, function () {
+    console.log('%s listening to %s', server.name, server.url); 
+});
 
+
+// Create chat bot
+var connector = new builder.ChatConnector({
+    appId: process.env.MICROSOFT_APP_ID,
+    appPassword: process.env.MICROSOFT_APP_PASSWORD
+});
+var bot = new builder.UniversalBot(connector);
+server.post('/api/messages', connector.listen());
 
 //Future State for a Catalog Card 
 bot.dialog('/catalog', [
@@ -77,12 +88,3 @@ bot.dialog('/catalog', [
         }
     }    
 ]);
-
-
-// Setup Restify Server
-var server = restify.createServer();
-server.post('/api/messages', bot.verifyBotFramework(), bot.listen());
-server.listen(process.env.port || 3978, function () {
-    console.log('%s listening to %s', server.name, server.url); 
-});
-
