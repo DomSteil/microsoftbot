@@ -1,5 +1,5 @@
 var restify = require('restify');
-var builder = require('botbuilder');
+var builder = require('../../core/');
 
 // Create bot and add dialogs
 var bot = new builder.UniversalBot({ appId: 'YourAppId', appSecret: 'YourAppSecret' });
